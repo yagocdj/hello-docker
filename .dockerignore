@@ -1,0 +1,3 @@
+# Aqui, adicionamos arquivos que o Docker não levará em conta
+# Exemplo: em um projeto Node JS, não queremos o diretório node_modules/
+.venv

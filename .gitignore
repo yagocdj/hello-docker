@@ -1,0 +1,2 @@
+# Ignorar o diretório do ambiente virtual Python criado para testar a aplicação FastAPI sem Docker
+.venv/

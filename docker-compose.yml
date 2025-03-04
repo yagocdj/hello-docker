@@ -1,0 +1,47 @@
+# Essa seção define os serviços (ou containers) que serão criados e gerenciados pelo Compose
+services:
+  # Define um serviço chamado hello_docker_db (um container) que será responsável por executar o PostgreSQL
+  hello_docker_db:
+    # Define que o container será criado a partir da imagem oficial do PostgreSQL (Disponível no Docker Hub)
+    image: postgres
+    # Especifica um nome personalizado para o container
+    container_name: hello_docker_db
+    # Aqui, é utilizado um volume nomeado chamado pgdata para mapear o diretório onde o PostgreSQL
+    # armazena seus dados (/var/lib/postgresql/data). Isso garante que os dados do banco sejam
+    # persistentes mesmo que o container seja reiniciado ou removido.
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    # Define as variáveis de ambiente que serão utilizadas para configurar o PostgreSQL
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: hello_docker
+    # Mapeia a porta 5433 do host para a porta 5432 do container, permitindo que o PostgreSQL seja acessado
+    # externamente através da porta 5433.
+    ports:
+      - "5433:5432"
+    # Define que o container será sempre reiniciado automaticamente caso seja encerrado
+    restart: always
+
+  hello_docker_app:
+    # Embora seja definida uma imagem chamada hello_docker_app, a diretiva
+    # build: . indica que o Docker Compose deve construir a imagem usando o Dockerfile localizado no diretório atual.
+    image: hello_docker_app
+    # Especifica um nome personalizado para o container
+    container_name: hello_docker_app
+    # Construa a imagem a partir do Dockerfile localizado no diretório atual
+    build: .
+    # a porta 8000 exposta pelo container (onde o FastAPI normalmente escuta) é mapeada para a
+    # porta 8001 do host. Assim, você acessará sua aplicação via http://localhost:8001
+    ports:
+      - "8001:8000"
+    # Essa diretiva informa ao Docker Compose que o container da aplicação depende do container do
+    # banco de dados. Dessa forma, o Compose inicia o hello_docker_db antes de iniciar o hello_docker_app.
+    depends_on:
+      - hello_docker_db
+
+# Essa parte declara um volume nomeado chamado pgdata. Ele é referenciado no serviço do banco de
+# dados para armazenar os dados de forma persistente
+volumes:
+  pgdata:
+    
