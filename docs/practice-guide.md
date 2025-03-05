@@ -40,7 +40,7 @@ Em seguida, crie a pasta `app` para armazenar os arquivos de código fonte da ap
 mkdir app
 ```
 
-### 3. Criar o arquivo de dependências
+### 2. Criar o arquivo de dependências
 
 Crie o arquivo `requirements.txt` e adicione o seguinte conteúdo a ele:
 ```
@@ -48,7 +48,7 @@ fastapi[standard]>=0.113.0,<0.115.10
 pydantic>=2.7.0,<3.0.0
 ```
 
-### 4. Criar o código fonte da aplicação
+### 3. Criar o código fonte da aplicação
 
 1. Dentro do diretório `app/`, crie um arquivo `__init__.py` a fim de tornar `app` um pacote Python.
 2. Ainda dentro do `app/`, crie um arquivo `main.py` e adicione o seguinte código fonte a ele:
@@ -63,7 +63,7 @@ def read_root():
     return {"Hello": "World"}
 ```
 
-### 5. Criar o Dockerfile e executando um container a partir de uma imagem
+### 4. Criar o Dockerfile e executando um container a partir de uma imagem
 
 1. Crie a Dockerfile necessária para executar um *container* a partir da imagem base do Python 3.12 (os comentários explicam cada comando):
 
@@ -167,7 +167,7 @@ docker run -p 8001:8000 hello-docker-fastapi:1.0
 onde o comando `docker run` foi executado ou clicando no botão *Stop* no *container* através do
 Docker Desktop).
 
-### 6. Executando múltiplos containers ao mesmo tempo com Docker Compose
+### 5. Executando múltiplos containers ao mesmo tempo com Docker Compose
 
 1. Agora que já conseguimos executar um *container*, vamos supor que queremos também executar um
 *container* para o nosso banco de dados PostgreSQL. Para isso, utilizaremos Docker Compose. Desse
