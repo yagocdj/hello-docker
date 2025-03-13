@@ -160,7 +160,7 @@ docker run -p 8001:8000 hello-docker-fastapi:1.0
 
 ```
 
-6. Para acessar a API, utilize a URL [http://0.0.0.0:8001/docs](http://0.0.0.0:8001/docs)
+6. Para acessar a API, utilize a URL [http://localhost:8001/docs](http://localhost:8001/docs)
 (*link* para a documentação da API criada com os seus *endpoints*)
 
 7. Pare o *container* antes de prosseguirmos para a próxima etapa (Ctrl + C na janela do terminal
