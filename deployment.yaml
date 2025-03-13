@@ -1,0 +1,28 @@
+
+# tudo é uma requisição de API no k8s
+apiVersion: apps/v1
+
+# Tipo de recurso que estamos criando
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: webserver
+  name: webserver
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: webserver
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: webserver
+    spec:
+      containers:
+      - image: yagocesar/hello-docker:1.0
+        name: hello-docker
+        resources: {}
+status: {}
