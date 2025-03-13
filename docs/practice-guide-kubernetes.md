@@ -68,7 +68,7 @@ kubectl get pod
 
 Como os ips dos pods são dinâmicos, precisamos criar uma maneira de se conectar ao nosso pod fixa. Os services servem justamente como um IP estático que gerenciam as requisições pra ele mandadas, e encaminha elas para o pod apropriado.
 ```sh
-kubectl expose deployment hello-docker --port 80 --target-port 80
+kubectl expose deployment hello-docker --port 8000 --target-port 8000
 ```
 
 Após isso, é necessário copiar o IP deste service para posteriormente nos conectarmos com os pods. Você pode fazer isso rodando o seguinte código:
@@ -95,41 +95,13 @@ Instancia um novo pod rodando a imagem "alpine", e abre o shell desse pod no ter
 apk add curl
 ```
 
-## 8. Use o curl para se conectar ao pod hello-docker
+## 8. Use o curl para se conectar à um pod do hello-docker
 
 ```sh
-curl <IP copiado anteriormente>:8000
+curl hello-world:8000
 ```
 
 Saída esperada:
 ```sh
 {"Hello":"World"}/ #
-```
-
-## 7. Verificando os Endpoints do Service
-
-```sh
-kubectl get endpoints <nome do service>
-```
-
-##  Importante:  
-
-Substitua "<nome do service>" pelo nome do seu serviço Kubernetes.
-
-## 8. Criando um Pod Temporário para Testar a Conectividade (Opcional)
-
-```sh
-kubectl run --image alpine -it demo sh
-```
-
-## 9. Instalando o Utilitário Curl no Pod Temporário (Se Necessário)
-
-```sh
-apk add curl
-```
-
-## 10. Verificando a Conectividade com Curl
-
-```sh
-curl <EXTERNAL-IP do servico>:8080
 ```
